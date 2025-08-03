@@ -70,9 +70,9 @@ export default function GamifiedContact() {
 
     return (
         <ParallaxProvider>
-            <div className="relative z-0 overflow-hidden rounded-3xl max-w-md mx-auto">
+            <div className="relative z-0 overflow-hidden rounded-3xl max-w-lg mx-auto">
                 {!showContactBanner && target && (
-                    <div className="bg-gray-100 dark:bg-gray-900 py-5 text-center px-4">
+                    <div className="bg-gray-100/30 dark:bg-gray-900 py-5 text-center px-4 shadow-md shadow-gray-600">
                         <p className="text-xl font-semibold text-gray-800 dark:text-white">
                             Little Puzzle to connect!
                         </p>
@@ -90,7 +90,7 @@ export default function GamifiedContact() {
                             <div className="italic text-sm text-gray-500 mt-1">💭 Hint: {target.hint}</div>
                         </div>
 
-                        <div className="mt-6 flex justify-center gap-2 text-2xl overflow-x-auto whitespace-nowrap px-2">
+                        <div className="mt-6 flex justify-center gap-2 text-2xl  whitespace-nowrap px-2">
                             {shuffledEmojis.map((emoji, i) => (
                                 <button
                                     key={i}

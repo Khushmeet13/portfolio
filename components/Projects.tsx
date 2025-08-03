@@ -14,7 +14,7 @@ const projects = [
     description: 'Business analytics dashboard for real-time report generation and structured data management. Features smart data upload, cleaning, and dynamic filters for faster insights.',
     link: '/projects',
     live: 'https://mis-dashboard-sigma.vercel.app/',
-    image: '/images/connected.jpg',
+    image: '/projectImages/mis-dash-1.png',
     techStack: [
       { icon: '/images/React.webp', name: 'React' },
       { icon: '/images/Tailwind.png', name: 'Tailwind CSS' },
@@ -27,7 +27,7 @@ const projects = [
     description: 'AI-powered search tool that connects user images to matching products with high accuracy. It uses machine learning model to understand visuals and display the most relevant results.',
     link: '/projects',
     live: 'http://172.105.252.9:3000/sms-reports',
-    image: '/images/development.png',
+    image: '/projectImages/visual-ai-1.png', 
     techStack: [
       { icon: '/images/React.webp', name: 'React' },
       { icon: '/images/typescript.webp', name: 'Tyescript' },
@@ -40,7 +40,7 @@ const projects = [
     description: 'Software tool for analyzing X-rays and generating precise orthodontic measurements. Supports manual annotations and improves treatment planning accuracy.',
     link: '/projects',
     live: 'http://172.105.252.9:3000/sms-reports',
-    image: '/images/techphoto.webp',
+    image: '/projectImages/ceph-2.png',
     techStack: [
       { icon: '/images/java.png', name: 'Java' },
       { icon: '/images/javafx.jpg', name: 'JavaFX' },
@@ -52,10 +52,10 @@ const projects = [
 export default function Projects() {
   return (
     <>
-      <div className="h-5 w-full bg-gradient-to-b from-blue-400 to-gray-300/50 dark:from-black dark:to-gray-700" />
+      <div className="h-5 w-full bg-gradient-to-b from-blue-400 to-blue-300/50 dark:from-black dark:to-gray-700" />
 
       <motion.section
-        className="py-10 px-10 dark:bg-gray-700 bg-gray-300/50"
+        className="py-10 px-10 dark:bg-gray-700 bg-blue-300/50"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.6 }}
@@ -72,15 +72,20 @@ export default function Projects() {
               className="p-6 border rounded-3xl shadow hover:shadow-xl dark:bg-black/50 dark:border-white/20 dark:backdrop-blur-md transition-all border-white/30 bg-white/10"
             >
 
-              <div className="overflow-hidden rounded-md mb-4 flex justify-center">
+              <div className="relative  overflow-hidden rounded-md mb-4 flex justify-center group">
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-500 ease-in-out group-hover:opacity-0 z-10" />
+
+                {/* Image */}
                 <Image
                   src={proj.image}
                   alt={proj.title}
-                  width={600}
+                  width={700}
                   height={300}
-                  className="transition-transform duration-500 ease-in-out hover:scale-125 object-cover"
+                  className="transition-transform duration-500 ease-in-out object-cover rounded-md z-0"
                 />
               </div>
+
 
               <h3 className="text-xl font-bold mb-2 dark:text-white">{proj.title}
                 <a
@@ -105,7 +110,7 @@ export default function Projects() {
                       className="object-contain"
                     />
 
-                   
+
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-20 pointer-events-none">
                       {tech.name}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45 mt-[-2px]" />

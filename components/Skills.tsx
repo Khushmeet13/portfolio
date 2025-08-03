@@ -99,7 +99,7 @@ export default function Skills() {
 
 
       <motion.section
-        className="relative px-4 py-10 dark:bg-gray-700 bg-gray-300/50 overflow-hidden"
+        className="relative px-4 py-10 dark:bg-gray-700 bg-blue-300/50 overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

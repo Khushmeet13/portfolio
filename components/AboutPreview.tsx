@@ -11,10 +11,10 @@ export default function AboutPreview() {
 
   return (
     <>
-      <div className="h-5 w-full bg-gradient-to-t from-blue-950 to-gray-300/50 dark:from-black dark:to-gray-700" />
+      <div className="h-5 w-full bg-gradient-to-t from-blue-900 to-blue-300/50 dark:from-black dark:to-gray-700" />
 
       <motion.section
-        className="text-center dark:bg-black dark:text-white py-12 px-4"
+        className="text-center dark:bg-black dark:text-white bg-blue-900 py-12 px-4"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}

@@ -83,11 +83,11 @@ export default function ContactCTA() {
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="h-10 w-full bg-gradient-to-b from-black to-gray-700"
+        className="h-5 w-full bg-gradient-to-b dark:from-black dark:to-gray-700 from-blue-400 to-blue-300/50"
       />
 
       <motion.section
-        className="relative bg-blue-50 dark:bg-gray-700 text-center pt-12 px-4 text-white h-[600px]"
+        className="relative dark:bg-gray-700 bg-blue-300/50 text-center pt-12 px-4 dark:text-white text-black h-[600px]"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6 }}
@@ -181,12 +181,12 @@ export default function ContactCTA() {
         </AnimatePresence>
 
         {/* Main CTA Content */}
-        <h2 className="flex items-center justify-center text-3xl font-bold text-white mt-10">
+        <h2 className="flex items-center justify-center text-3xl font-bold dark:text-white text-black mt-10">
           <Lottie animationData={devAnimation} className="w-15 h-12 mr-2" loop />
           Ready to work together?
         </h2>
 
-        <p className="text-lg max-w-2xl mx-auto text-white/80 mb-4 mt-4">
+        <p className="text-lg max-w-2xl mx-auto dark:text-white/80 text-black mb-4 mt-4">
           I'm open to freelance work, collaboration opportunities, or full-time roles. Let's create something exceptional together!
         </p>
 
@@ -200,12 +200,13 @@ export default function ContactCTA() {
         </motion.a>*/}
         <GamifiedContact />
 
-        <p className="mt-10 italic text-white/80">
+        <p className="mt-10 italic dark:text-white/80 text-black">
           “Let's turn ideas into reality — one pixel at a time.”
         </p>
 
 
       </motion.section>
+       <div className="h-3 w-full bg-gradient-to-t dark:from-black dark:to-gray-700 from-blue-900 to-blue-300/50" />
     </>
   );
 }

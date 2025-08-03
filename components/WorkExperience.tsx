@@ -66,10 +66,10 @@ export default function WorkExperience() {
 
   return (
     <>
-      <div className="h-5 w-full bg-gradient-to-t from-blue-900 to-gray-300/50 dark:from-black dark:to-gray-700" />
+      <div className="h-5 w-full bg-gradient-to-t from-blue-900 to-blue-300/50 dark:from-black dark:to-gray-700" />
 
       <motion.section
-        className="px-4 py-4 pb-8 dark:bg-black "
+        className="px-4 py-4 pb-8 dark:bg-black bg-blue-900 "
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}

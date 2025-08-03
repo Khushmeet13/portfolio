@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
@@ -8,6 +9,7 @@ import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
 import { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: false });
 const Chatbot = dynamic(() => import('@/components/Chatbot'), { ssr: false });
@@ -17,11 +19,11 @@ const projects = [
     title: 'MIS Dashboard',
     description: 'An analytics dashboard for real-time business insights with charts & user KPIs.',
     icon: <FaChartLine size={20} className="text-blue-500" />,
-    image: '/images/connected.jpg',
+    image: '/projectImages/mis-dash-5.png',
     bgEffect: 'bg-[url(/images/bg-charts.png)]',
     audio: '/audio/mis-dashboard.mp3',
     impact: '✅ Used by technical teams • 🚀 35% performance boost • 📈 Improved reporting visibility',
-    screenshots: ['/images/mis1.jpg', '/images/mis2.jpg', '/images/mis3.jpg'],
+    screenshots: ['/projectImages/mis-dash-1.png', '/projectImages/mis-dash-2.png', '/projectImages/mis-dash-3.png', '/projectImages/mis-dash-4.png', '/projectImages/mis-dash-5.png', '/projectImages/mis-dash-6.png', '/projectImages/mis-dash-7.png', '/projectImages/mis-dash-8.png'],
     github: 'https://github.com/Khushmeet13/mis-dashboard',
     liveDemo: 'https://mis-dashboard-sigma.vercel.app/',
     narrationText: `The MIS Dashboard provides real-time analytics for business performance. It includes charts, KPIs, and tools to boost decision-making by 35%.`,
@@ -30,27 +32,27 @@ const projects = [
     title: 'Visual AI Search',
     description: 'Image recognition-based search system powered by machine learning.',
     icon: <FaSearch size={20} className="text-cyan-500" />,
-    image: '/images/phase1.jpg',
+    image: '/projectImages/visual-ai-1.png',
     bgEffect: 'bg-[url(/images/bg-matrix.png)]',
     audio: '/audio/visual-search.mp3',
     impact: '✅ 1M+ images indexed • 🚀 90% faster search • 📈 70% user satisfaction improvement',
     screenshots: ['/images/ai1.jpg', '/images/ai2.jpg'],
     github: 'https://github.com/yourusername/mis-dashboard',
     liveDemo: 'https://mis-dashboard.vercel.app',
-    narrationText: `The MIS Dashboard provides real-time analytics for business performance. It includes charts, KPIs, and tools to boost decision-making by 35%.`,
+    narrationText: `Matches user-uploaded or sketched images to relevant products, generates image-based descriptions, applies smart filters (category, color, brand), and supports secure product uploads via an admin panel.`,
   },
   {
     title: 'Cephalogram Tool',
     description: 'AI-driven dental X-ray measurement app with annotation and detection.',
     icon: <FaTooth size={20} className="text-white-500" />,
-    image: '/images/phase2.jpg',
+    image: '/projectImages/ceph-4.png',
     bgEffect: 'bg-[url(/images/bg-dental.png)]',
     audio: '/audio/cephalogram-tool.mp3',
     impact: '✅ Over 200+ points • 🚀 60% time savings • 📈 Improved diagnosis precision',
-    screenshots: ['/images/dental1.jpg', '/images/dental2.jpg'],
-    github: 'https://github.com/yourusername/mis-dashboard',
-    liveDemo: 'https://mis-dashboard.vercel.app',
-    narrationText: `The MIS Dashboard provides real-time analytics for business performance. It includes charts, KPIs, and tools to boost decision-making by 35%.`,
+    screenshots: ['/projectImages/ceph-1.png', '/projectImages/ceph-2.png', '/projectImages/ceph-3.png', '/projectImages/ceph-4.png'],
+    github: 'https://github.com/Khushmeet13/ceph-analysis-tool',
+    liveDemo: 'https://github.com/Khushmeet13/ceph-analysis-tool',
+    narrationText: `User-friendly software for orthodontists to analyze X-ray images with precision. It supports landmark measurements, reduces human error with algorithmic workflows, and boosts workflow efficiency by 25%.`,
   },
 ];
 
@@ -58,6 +60,7 @@ export default function Projects() {
   const audioRefs = useRef<{ [key: number]: HTMLAudioElement | null }>({});
   const [carouselImages, setCarouselImages] = useState<string[] | null>(null);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+  const [current, setCurrent] = useState(0);
 
 
   /*const handlePlayAudio = (index) => {
@@ -66,6 +69,26 @@ export default function Projects() {
       audio.play();
     }
   };*/
+
+  useEffect(() => {
+    if (!carouselImages) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrent((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+      } else if (e.key === 'ArrowRight') {
+        setCurrent((prev) => (prev + 1) % carouselImages.length);
+      } else if (e.key === 'Escape') {
+        setCarouselImages(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    // cleanup
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [carouselImages]);
+
 
   const handlePlayAudio = (index: number) => {
     const currentAudio = audioRefs.current[index];
@@ -142,7 +165,8 @@ export default function Projects() {
                       <Image
                         src={project.image}
                         alt={project.title}
-                        fill
+                        width={700}
+                        height={300}
                         className="object-cover"
                       />
                     </div>
@@ -159,7 +183,11 @@ export default function Projects() {
                       {playingIndex === index ? '⏸ Pause' : '▶ Narration'}
                     </button>
                     <button
-                      onClick={() => setCarouselImages(project.screenshots)}
+                      onClick={() => {
+                        setCarouselImages(project.screenshots);
+                        setCurrent(0);
+                      }}
+
                       className="text-white border border-white px-4 py-1 text-sm rounded hover:bg-white hover:text-black mb-2"
                     >
                       View Screenshots
@@ -207,12 +235,39 @@ export default function Projects() {
 
           {carouselImages && (
             <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
-              <div className="w-11/12 max-w-2xl bg-white rounded-lg overflow-hidden">
-                <Carousel images={carouselImages} />
-                <button onClick={() => setCarouselImages(null)} className="absolute top-4 right-4 text-black text-xl"><FaTimes /></button>
+              <div className="w-11/12 max-w-6xl rounded-lg overflow-hidden relative flex items-center">
+                <button
+                  onClick={() =>
+                    setCurrent((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
+                  }
+                  className="text-white text-4xl px-1 py-4 z-30 bg-black/50 rounded-full hover:bg-white/50 hover:text-black m-2"
+                >
+                  <ChevronLeft />
+                </button>
+
+                <Carousel
+                  images={carouselImages}
+                  current={current}
+                  setCurrent={setCurrent}
+                />
+
+                <button
+                  onClick={() => setCurrent((prev) => (prev + 1) % carouselImages.length)}
+                  className="text-white text-4xl px-1 py-4 z-30 bg-black/50 rounded-full hover:bg-white/50 hover:text-black m-2"
+                >
+                  <ChevronRight />
+                </button>
               </div>
+
+              <button
+                onClick={() => setCarouselImages(null)}
+                className="absolute top-2 right-2 text-white text-2xl bg-black/70 p-2 rounded-full z-20 hover:bg-white/20 hover:text-gray-300"
+              >
+                <FaTimes />
+              </button>
             </div>
           )}
+
 
           <Chatbot />
         </motion.div>

@@ -99,7 +99,7 @@ export default function Hero() {
         </div>
       </motion.section>
 
-      <div className="h-5 w-full bg-gradient-to-b from-blue-400 to-gray-300/50 dark:from-indigo-950  dark:to-gray-700" />
+      <div className="h-5 w-full bg-gradient-to-b from-blue-400 to-blue-300/50 dark:from-indigo-950  dark:to-gray-700" />
     </>
   );
 }
