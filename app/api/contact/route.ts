@@ -7,7 +7,6 @@ export async function POST(req: Request) {
   const { name, email, message } = body;
 
   try {
-
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -15,7 +14,6 @@ export async function POST(req: Request) {
         pass: process.env.EMAIL_PASS, // App password (NOT your Gmail password!)
       },
     });
-
 
     const mailOptions = {
       from: email,
@@ -30,12 +28,15 @@ export async function POST(req: Request) {
       `,
     };
 
-    // 3. Send email
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error('Email send error:', error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Email send error:', error.message);
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+    console.error('Unexpected error:', error);
+    return NextResponse.json({ success: false, error: 'Unknown error occurred' }, { status: 500 });
   }
 }

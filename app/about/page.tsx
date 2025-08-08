@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { FaGraduationCap, FaBriefcase, FaCertificate, FaStar, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaGraduationCap, FaBriefcase, FaCertificate, FaPlus, FaMinus } from 'react-icons/fa';
 
 type TimelineEntry = {
   heading: string;
@@ -18,7 +18,6 @@ type TimelineSection = {
   title: string;
   entries: TimelineEntry[];
 };
-
 
 const timelineData: TimelineSection[] = [
   {
@@ -83,11 +82,19 @@ const timelineData: TimelineSection[] = [
       },
     ],
   },
-
 ];
 
-
 export default function About() {
+  const [expandedSections, setExpandedSections] = useState<boolean[]>(
+    timelineData.map(() => false)
+  );
+
+  const toggleSection = (index: number) => {
+    setExpandedSections(prev =>
+      prev.map((val, i) => (i === index ? !val : val))
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -99,7 +106,6 @@ export default function About() {
           className="min-h-screen bg-gradient-to-br from-indigo-950 via-blue-700 to-blue-400 dark:from-black dark:via-gray-900 dark:to-black text-white"
         >
           <div className="relative z-10 pt-24  max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6">
-
             {/* Left: Text Content */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg text-white">
@@ -108,7 +114,7 @@ export default function About() {
 
               <p className="text-lg text-white/90 leading-relaxed mb-4 text-justify">
                 <span className="text-cyan-300 font-semibold">Not just a developer — a digital architect.</span> <br />
-                I'm Khushmeet Saini, a full-stack engineer who designs intuitive interfaces, architects intelligent systems, and turns blank screens into real-world impact.
+                I&apos;m Khushmeet Saini, a full-stack engineer who designs intuitive interfaces, architects intelligent systems, and turns blank screens into real-world impact.
               </p>
 
               <p className="text-lg text-white/90 leading-relaxed mb-4 text-justify">
@@ -117,7 +123,7 @@ export default function About() {
               </p>
 
               <p className="text-lg text-white/80 italic mb-6 text-justify">
-                “I don't just write code. I shape digital journeys that speak for themselves.”
+                “I don&apos;t just write code. I shape digital journeys that speak for themselves.”
               </p>
 
               <a
@@ -139,7 +145,6 @@ export default function About() {
                 className="rounded-md shadow-lg"
               />
             </div>
-
           </div>
 
           {/* Divider */}
@@ -151,64 +156,57 @@ export default function About() {
             <h2 className="text-3xl font-bold text-white mb-10 text-center drop-shadow">My Journey</h2>
 
             <div className="relative border-l-2 border-cyan-400 ml-4 space-y-12">
+              {timelineData.map((section, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="relative pl-10"
+                >
+                  {/* Icon Circle */}
+                  <div className="absolute -left-6 top-1 bg-cyan-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+                    {section.icon}
+                  </div>
 
-              {timelineData.map((section, index) => {
-                const [expanded, setExpanded] = useState(false);
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="relative pl-10"
+                  {/* Header and Toggle */}
+                  <div
+                    className="flex items-center justify-between bg-white/10 backdrop-blur-md p-4 rounded-xl cursor-pointer hover:bg-white/20 transition"
+                    onClick={() => toggleSection(index)}
                   >
-                    {/* Icon Circle */}
-                    <div className="absolute -left-6 top-1 bg-cyan-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
-                      {section.icon}
-                    </div>
+                    <h3 className="text-xl font-semibold text-white">{section.title}</h3>
+                    {expandedSections[index] ? <FaMinus className="text-cyan-400" /> : <FaPlus className="text-cyan-400" />}
+                  </div>
 
-                    {/* Header and Toggle */}
-                    <div
-                      className="flex items-center justify-between bg-white/10 backdrop-blur-md p-4 rounded-xl cursor-pointer hover:bg-white/20 transition"
-                      onClick={() => setExpanded(!expanded)}
-                    >
-                      <h3 className="text-xl font-semibold text-white">{section.title}</h3>
-                      {expanded ? <FaMinus className="text-cyan-400" /> : <FaPlus className="text-cyan-400" />}
-                    </div>
-
-                    {/* Content Expand */}
-                    <AnimatePresence>
-                      {expanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-4 space-y-4"
-                        >
-                          {section.entries.map((entry, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-white/5 border border-white/10 rounded-md p-4 text-white/90"
-                            >
-                              <h4 className="font-semibold text-lg">{entry.heading}</h4>
-                              {entry.sub && <p className="text-sm text-white/70">{entry.sub}</p>}
-                              {entry.desc && (
-                                <p className="mt-2 text-sm whitespace-pre-line">{entry.desc}</p>
-                              )}
-
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
+                  {/* Content Expand */}
+                  <AnimatePresence>
+                    {expandedSections[index] && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-4 space-y-4"
+                      >
+                        {section.entries.map((entry, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-white/5 border border-white/10 rounded-md p-4 text-white/90"
+                          >
+                            <h4 className="font-semibold text-lg">{entry.heading}</h4>
+                            {entry.sub && <p className="text-sm text-white/70">{entry.sub}</p>}
+                            {entry.desc && (
+                              <p className="mt-2 text-sm whitespace-pre-line">{entry.desc}</p>
+                            )}
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
             </div>
           </div>
-
-
         </motion.div>
       </main>
       <Footer />

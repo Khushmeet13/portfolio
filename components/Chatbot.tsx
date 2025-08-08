@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FiMessageCircle, FiX } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Lottie from 'lottie-react';

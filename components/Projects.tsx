@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Lottie from 'lottie-react';
-import devAnimation from './animations/projectcode.json';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 

@@ -118,7 +118,7 @@ export default function Contact() {
                 <div className="w-20 h-20">
                   <Lottie animationData={assistantAnim} loop />
                 </div>
-                <h2 className="text-3xl font-bold">Let's Chat!</h2>
+                <h2 className="text-3xl font-bold">Let&apos;s Chat!</h2>
               </div>
 
               {/* Typing animated question */}
@@ -202,7 +202,7 @@ export default function Contact() {
                 <Lottie animationData={successAnim} loop={false} />
               </div>
               <h2 className="text-3xl font-bold text-white mt-4">Message Sent!</h2>
-              <p className="text-white/90 mt-2">Thanks for reaching out. I'll get back to you soon ✌️</p>
+              <p className="text-white/90 mt-2">Thanks for reaching out. I&apos;ll get back to you soon ✌️</p>
 
               <button
                 onClick={resetForm}

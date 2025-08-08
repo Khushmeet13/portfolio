@@ -25,11 +25,11 @@ export default function Hero() {
         
           <div className="text-white text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
-              Hi, I'm Khushmeet 👋
+              Hi, I&apos;m Khushmeet 👋
             </h1>
 
             <p className="text-xl font-medium">
-              I'm a{' '}
+              I&apos;m a{' '}
               <span className="text-cyan-300 font-bold">
                 <Typewriter
                   words={['MERN Stack Developer', 'UI/UX Designer', 'Tech Enthusiast']}

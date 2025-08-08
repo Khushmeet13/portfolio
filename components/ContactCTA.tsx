@@ -187,7 +187,7 @@ export default function ContactCTA() {
         </h2>
 
         <p className="text-lg max-w-2xl mx-auto dark:text-white/80 text-black mb-4 mt-4">
-          I'm open to freelance work, collaboration opportunities, or full-time roles. Let's create something exceptional together!
+          I&apos;m open to freelance work, collaboration opportunities, or full-time roles. Let&apos;s create something exceptional together!
         </p>
 
         {/*<motion.a
@@ -201,7 +201,7 @@ export default function ContactCTA() {
         <GamifiedContact />
 
         <p className="mt-10 italic dark:text-white/80 text-black">
-          “Let's turn ideas into reality — one pixel at a time.”
+          “Let&apos;s turn ideas into reality — one pixel at a time.”
         </p>
 
 

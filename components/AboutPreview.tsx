@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Lottie from 'lottie-react';
-import devAnimation from './animations/plan.json';
 
 
 export default function AboutPreview() {
@@ -114,7 +112,7 @@ export default function AboutPreview() {
 
         {/* Quote */}
         <blockquote className="mt-6 italic text-sm text-gray-500  pl-4 max-w-xl mx-auto">
-          "Code is a tool to amplify imagination."
+          <p>&quot;Code is a tool to amplify imagination.&quot;</p>
         </blockquote>
 
 

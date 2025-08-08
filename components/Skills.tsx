@@ -2,13 +2,12 @@
 
 import { useState } from 'react';
 import { HiOutlineClipboardCopy } from 'react-icons/hi';
-import { motion, rgba } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
 import backendAnimation from './animations/backend.json';
 import frontendAnimation from './animations/frontend.json';
 import tooldesignAnimation from './animations/tool&design.json';
-import development from './animations/development.json';
 
 
 // Tech Stack Data
