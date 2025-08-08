@@ -5,11 +5,21 @@ import Image from 'next/image';
 import DarkModeToggle from './DarkModeToggle';
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20); 
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -19,10 +29,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center
-      bg-gradient-to-b from-indigo-950 to-transparent dark:from-black/80 dark:to-transparent
-      text-white dark:text-white">
-
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-colors duration-300
+      ${isScrolled ? 'dark:bg-black shadow-lg bg-blue-900' : 'bg-gradient-to-b from-indigo-950 to-transparent dark:from-black/80 dark:to-transparent'}
+      text-white`}
+    >
       {/* Logo and Title */}
       <div className="flex items-center space-x-2">
         <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -33,7 +44,7 @@ export default function Navbar() {
             height={40}
           />
         </div>
-        <h1 className="text-xl font-bold font-serif text-white">Portfolio</h1>
+        <h1 className="text-xl font-bold font-serif">Portfolio</h1>
       </div>
 
       {/* Desktop Nav */}
@@ -97,7 +108,7 @@ export default function Navbar() {
   );
 }
 
-// Group of Icons (to reuse in both views)
+// Group of Icons
 function IconGroup() {
   return (
     <>
