@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Lottie from 'lottie-react';
@@ -23,18 +23,18 @@ export default function Contact() {
   //const [listening, setListening] = useState(false);
   //const recognitionRef = useRef<any>(null);
 
- /* useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        const recognition = new SpeechRecognition();
-        recognition.lang = 'en-US';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-        recognitionRef.current = recognition;
-      }
-    }
-  }, []);*/
+  /* useEffect(() => {
+     if (typeof window !== 'undefined') {
+       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+       if (SpeechRecognition) {
+         const recognition = new SpeechRecognition();
+         recognition.lang = 'en-US';
+         recognition.interimResults = false;
+         recognition.maxAlternatives = 1;
+         recognitionRef.current = recognition;
+       }
+     }
+   }, []);*/
 
   const handleNext = () => {
     const currentKey = questions[step].key;
@@ -53,9 +53,12 @@ export default function Contact() {
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [questions[step].key]: e.target.value });
   };
+
 
   const handleSubmit = async () => {
     await fetch('/api/contact', {
@@ -171,7 +174,7 @@ export default function Contact() {
                       value={form[questions[step].key as keyof typeof form]}
                     />
                   )}
-                 
+
                 </div>
               </motion.div>
 

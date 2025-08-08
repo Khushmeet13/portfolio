@@ -72,7 +72,7 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const [open, setOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode] = useState(true);
 
   const handleSend = () => {
     if (!input.trim()) return;
