@@ -20,10 +20,10 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
-  const [listening, setListening] = useState(false);
-  const recognitionRef = useRef<any>(null);
+  //const [listening, setListening] = useState(false);
+  //const recognitionRef = useRef<any>(null);
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (typeof window !== 'undefined') {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (SpeechRecognition) {
@@ -34,7 +34,7 @@ export default function Contact() {
         recognitionRef.current = recognition;
       }
     }
-  }, []);
+  }, []);*/
 
   const handleNext = () => {
     const currentKey = questions[step].key;
@@ -72,7 +72,7 @@ export default function Contact() {
     setError('');
   };
 
-  const handleVoiceInput = () => {
+  /*const handleVoiceInput = () => {
     const recognition = recognitionRef.current;
     if (!recognition) {
       alert('Speech recognition not supported in this browser.');
@@ -99,7 +99,7 @@ export default function Contact() {
       recognition.start();
       setListening(true);
     }
-  };
+  };*/
 
   return (
     <>
@@ -171,14 +171,7 @@ export default function Contact() {
                       value={form[questions[step].key as keyof typeof form]}
                     />
                   )}
-                  <button
-                    onClick={handleVoiceInput}
-                    title={listening ? 'Stop Listening' : 'Start Voice Input'}
-                    className={`p-2 rounded-full border ${listening ? 'bg-red-500' : 'bg-white/20'
-                      } hover:bg-white/30 transition`}
-                  >
-                    🎙️
-                  </button>
+                 
                 </div>
               </motion.div>
 
