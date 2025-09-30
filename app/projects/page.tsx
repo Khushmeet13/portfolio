@@ -32,7 +32,7 @@ const projects = [
     title: 'Neural AI Search',
     description: 'Image recognition-based search system powered by machine learning.',
     icon: <FaSearch size={20} className="text-cyan-500" />,
-    image: '/projectImages/search-engine.png',
+    image: '/projectImages/neural-ai1.png',
     bgEffect: 'bg-[url(/images/bg-matrix.png)]',
     audio: '/audio/visual-search.mp3',
     impact: '✅ 1M+ images indexed • 🚀 90% faster search • 📈 70% user satisfaction improvement',
