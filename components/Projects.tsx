@@ -21,11 +21,11 @@ const projects = [
     ]
   },
   {
-    title: 'Visual Search Engine',
+    title: 'Neural Search Engine',
     description: 'AI-powered search tool that connects user images to matching products with high accuracy. It uses machine learning model to understand visuals and display the most relevant results.',
     link: '/projects',
     live: 'http://172.105.252.9:3000/sms-reports',
-    image: '/projectImages/visual-ai-1.png', 
+    image: '/projectImages/neural-ai1.png', 
     techStack: [
       { icon: '/images/React.webp', name: 'React' },
       { icon: '/images/typescript.webp', name: 'Tyescript' },
