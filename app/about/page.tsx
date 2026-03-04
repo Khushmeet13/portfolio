@@ -105,10 +105,10 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="min-h-screen bg-gradient-to-br from-indigo-950 via-blue-700 to-blue-400 dark:from-black dark:via-gray-900 dark:to-black text-white"
         >
-          <div className="relative z-10 pt-24  max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6">
+          <div className="relative z-10 pt-28  max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6">
             {/* Left: Text Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg text-white">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-6 drop-shadow-lg text-white">
                 About Me
               </h2>
 
@@ -138,7 +138,7 @@ export default function About() {
             {/* Right: Image */}
             <div className="flex justify-center md:justify-end">
               <Image
-                src="/aboutback.jpeg"
+                src="/full-img.png"
                 alt="Khushmeet Saini"
                 width={300}
                 height={300}
@@ -153,7 +153,7 @@ export default function About() {
           </div>
 
           <div className="max-w-6xl mx-auto pb-16 px-6">
-            <h2 className="text-3xl font-bold text-white mb-10 text-center drop-shadow">My Journey</h2>
+            <h2 className="text-3xl font-semibold text-white mb-10 text-center drop-shadow">My Journey</h2>
 
             <div className="relative border-l-2 border-cyan-400 ml-4 space-y-12">
               {timelineData.map((section, index) => (

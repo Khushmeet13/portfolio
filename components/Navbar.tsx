@@ -38,7 +38,7 @@ export default function Navbar() {
       <div className="flex items-center space-x-2">
         <div className="w-10 h-10 rounded-full overflow-hidden">
           <Image
-            src="/profile.jpeg"
+            src="/profile-img.png"
             alt="Profile"
             width={40}
             height={40}

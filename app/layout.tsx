@@ -10,7 +10,7 @@ export const metadata = {
   title: 'Khushmeet | Portfolio',
   description: 'Personal website of a full-stack developer',
   icons: {
-    icon: '/urlogo.png'
+    icon: '/profile-favicon.png'
   },
 };
 

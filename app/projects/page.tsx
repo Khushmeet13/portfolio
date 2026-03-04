@@ -132,8 +132,8 @@ export default function Projects() {
           <motion.div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-600 opacity-30 rounded-full blur-3xl animate-pulse" />
           <motion.div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-400 opacity-20 rounded-full blur-2xl animate-spin-slow" />
 
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-3xl font-bold mb-4 tracking-tight drop-shadow-md">
+          <div className="text-center mb-16 pt-10">
+            <h2 className="text-4xl md:text-3xl font-semibold mb-3 tracking-tight drop-shadow-md">
               Projects
             </h2>
             <p className="text-lg opacity-80">
