@@ -1,78 +1,182 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { FaChartLine, FaSearch, FaTooth, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools } from 'react-icons/fa';
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
-import { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: false });
 const Chatbot = dynamic(() => import('@/components/Chatbot'), { ssr: false });
 
+type Category = 'All' | 'Web Development' | 'UI/UX' | 'AI' | 'Desktop Application';
+
+const TABS: Category[] = ['All', 'Web Development', 'UI/UX', 'AI', 'Desktop Application'];
+
 const projects = [
   {
     title: 'MIS Dashboard',
+    category: 'Web Development' as Category,
     description: 'An analytics dashboard for real-time business insights with charts & user KPIs.',
-    icon: <FaChartLine size={20} className="text-blue-500" />,
-    image: '/projectImages/mis-dash-5.png',
+    icon: <FaChartLine size={20} className="text-blue-400" />,
+    image: '/projectImages/mis-dash/mis-dash-5.png',
     bgEffect: 'bg-[url(/images/bg-charts.png)]',
     audio: '/audio/mis-dashboard.mp3',
     impact: '✅ Used by technical teams • 🚀 35% performance boost • 📈 Improved reporting visibility',
-    screenshots: ['/projectImages/mis-dash-1.png', '/projectImages/mis-dash-2.png', '/projectImages/mis-dash-3.png', '/projectImages/mis-dash-4.png', '/projectImages/mis-dash-5.png', '/projectImages/mis-dash-6.png', '/projectImages/mis-dash-7.png', '/projectImages/mis-dash-8.png'],
+    screenshots: [
+      '/projectImages/mis-dash/mis-dash-1.png',
+      '/projectImages/mis-dash/mis-dash-2.png',
+      '/projectImages/mis-dash/mis-dash-3.png',
+      '/projectImages/mis-dash/mis-dash-4.png',
+      '/projectImages/mis-dash/mis-dash-5.png',
+      '/projectImages/mis-dash/mis-dash-6.png',
+      '/projectImages/mis-dash/mis-dash-7.png',
+      '/projectImages/mis-dash/mis-dash-8.png',
+    ],
     github: 'https://github.com/Khushmeet13/mis-dashboard',
     liveDemo: 'https://mis-dashboard-sigma.vercel.app/',
     narrationText: `The MIS Dashboard provides real-time analytics for business performance. It includes charts, KPIs, and tools to boost decision-making by 35%.`,
   },
   {
     title: 'Neural AI Search',
+    category: 'AI' as Category,
     description: 'Image recognition-based search system powered by machine learning.',
-    icon: <FaSearch size={20} className="text-cyan-500" />,
-    image: '/projectImages/neural-ai1.png',
+    icon: <FaSearch size={20} className="text-cyan-400" />,
+    image: '/projectImages/neural-ai/neural-ai1.png',
     bgEffect: 'bg-[url(/images/bg-matrix.png)]',
     audio: '/audio/visual-search.mp3',
     impact: '✅ 1M+ images indexed • 🚀 90% faster search • 📈 70% user satisfaction improvement',
-    screenshots: ['/projectImages/neural-ai1.png', '/projectImages/neural-ai2.png'],
+    screenshots: ['/projectImages/neural-ai/neural-ai1.png', '/projectImages/neural-ai/neural-ai2.png'],
     github: 'https://github.com/yourusername/mis-dashboard',
     liveDemo: 'https://mis-dashboard.vercel.app',
     narrationText: `Matches user-uploaded or sketched images to relevant products, generates image-based descriptions, applies smart filters (category, color, brand), and supports secure product uploads via an admin panel.`,
   },
   {
     title: 'Cephalogram Tool',
+    category: 'Desktop Application' as Category,
     description: 'AI-driven dental X-ray measurement app with annotation and detection.',
-    icon: <FaTooth size={20} className="text-white-500" />,
-    image: '/projectImages/ceph-4.png',
+    icon: <FaTooth size={20} className="text-white" />,
+    image: '/projectImages/ceph/ceph-4.png',
     bgEffect: 'bg-[url(/images/bg-dental.png)]',
     audio: '/audio/cephalogram-tool.mp3',
     impact: '✅ Over 200+ points • 🚀 60% time savings • 📈 Improved diagnosis precision',
-    screenshots: ['/projectImages/ceph-1.png', '/projectImages/ceph-2.png', '/projectImages/ceph-3.png', '/projectImages/ceph-4.png'],
+    screenshots: [
+      '/projectImages/ceph/ceph-1.png',
+      '/projectImages/ceph/ceph-2.png',
+      '/projectImages/ceph/ceph-3.png',
+      '/projectImages/ceph/ceph-4.png',
+    ],
     github: 'https://github.com/Khushmeet13/ceph-analysis-tool',
     liveDemo: 'https://github.com/Khushmeet13/ceph-analysis-tool',
     narrationText: `User-friendly software for orthodontists to analyze X-ray images with precision. It supports landmark measurements, reduces human error with algorithmic workflows, and boosts workflow efficiency by 25%.`,
   },
+  {
+    title: 'TestForge AI',
+    category: 'AI' as Category,
+    description: 'AI-powered test suite generator — upload a project ZIP and AI generates complete test files in real-time.',
+    icon: <FaBolt size={20} className="text-yellow-400" />,
+    image: '/projectImages/testforge/testforge-preview.png',
+    bgEffect: 'bg-[url(/images/bg-matrix.png)]',
+    audio: '/audio/testforge.mp3',
+    impact: '✅ Node.js · TypeScript · Python · Java • 🚀 Jest, Pytest, JUnit & more • 📈 Live streaming output',
+    screenshots: ['/projectImages/testforge-1.png', '/projectImages/testforge-2.png'],
+    github: 'https://github.com/Khushmeet13/testforge-ai',
+    liveDemo: 'https://testforge-ai-gen.vercel.app/',
+    narrationText: `TestForge AI lets you upload any project ZIP — it auto-detects the language and framework, analyzes functions and API routes, then uses AI to stream a complete test suite in real-time. Supports Jest, Vitest, Mocha, Pytest, JUnit 5, and RSpec with one-click download.`,
+  },
+  {
+    title: 'Finora',
+    category: 'Web Development' as Category,
+    description: 'Personal finance dashboard — track spending, manage cards, and get budget-aware shopping picks.',
+    icon: <FaWallet size={20} className="text-emerald-400" />,
+    image: '/projectImages/finora-preview.png',
+    bgEffect: 'bg-[url(/images/bg-charts.png)]',
+    audio: '/audio/finora.mp3',
+    impact: '✅ Multi-card management • 🚀 AI product recommendations • 📈 Auto-synced history',
+    screenshots: [
+      '/projectImages/finora-1.png',
+      '/projectImages/finora-2.png',
+      '/projectImages/finora-3.png',
+      '/projectImages/finora-4.png',
+    ],
+    github: 'https://github.com/Khushmeet13/finora',
+    liveDemo: 'https://finora-dashboard.vercel.app',
+    narrationText: `Finora is a smart personal finance dashboard where you can add and manage payment cards, track your spending, and visualize budget breakdowns. It pulls transaction history directly from your payment gateway and uses AI to recommend online shopping products that fit within your remaining monthly budget — so you never overspend.`,
+  },
+  {
+    title: 'StagePass',
+    category: 'Web Development' as Category,
+    description: 'Event ticketing platform — discover shows, book seats, pay online & get confirmation on WhatsApp and email.',
+    icon: <FaTicketAlt size={20} className="text-orange-400" />,
+    image: '/projectImages/stagepass/stagepass-preview.png',
+    bgEffect: 'bg-[url(/images/bg-charts.png)]',
+    audio: '/audio/stagepass.mp3',
+    impact: '✅ Live Ticketmaster • 🚀 Online payments & QR tickets • 📈 WhatsApp & email confirmation',
+    screenshots: [
+      '/projectImages/stagepass-1.png',
+      '/projectImages/stagepass-2.png',
+      '/projectImages/stagepass-3.png',
+      '/projectImages/stagepass-4.png',
+    ],
+    github: 'https://github.com/Khushmeet13/event-booking-app',
+    liveDemo: 'https://stagepass-tickets.vercel.app/',
+    narrationText: `StagePass is a production-grade event ticketing platform. Browse live shows powered by the Ticketmaster API, filter by city and genre, check venue locations, enquire via WhatsApp, select seats, and checkout with online payment. You get a QR-coded ticket confirmation instantly on both WhatsApp and email.`,
+  },
+  {
+    title: 'ToolNest',
+    category: 'Web Development' as Category,
+    description: 'All-in-one utility platform — generators, converters, image tools & dev utilities organized by category.',
+    icon: <FaTools size={20} className="text-amber-400" />,
+    image: '/projectImages/toolnest/toolnest-preview.png',
+    bgEffect: 'bg-[url(/images/bg-charts.png)]',
+    audio: '/audio/toolnest.mp3',
+    impact: '✅ 20+ tools across 4 categories • 🚀 Zero login required • 📈 Instant in-browser processing',
+    screenshots: [
+      '/projectImages/toolnest-1.png',
+      '/projectImages/toolnest-2.png',
+      '/projectImages/toolnest-3.png',
+    ],
+    github: 'https://github.com/Khushmeet13/toolnest',
+    liveDemo: 'https://toolnest-new.vercel.app/',
+    narrationText: `ToolNest is a clean, category-driven utility platform housing tools for generators, converters, image processing, and developer utilities — all running in-browser with no login needed. Built for speed and discoverability, every tool is one click away.`,
+  },
 ];
+
+// Tab accent colors
+const TAB_COLORS: Record<Category, string> = {
+  All: 'from-indigo-400 to-blue-400',
+  'Web Development': 'from-blue-400 to-cyan-400',
+  'UI/UX': 'from-pink-400 to-rose-400',
+  AI: 'from-violet-400 to-purple-400',
+  'Desktop Application': 'from-emerald-400 to-teal-400',
+};
+
+const TAB_ACTIVE_BG: Record<Category, string> = {
+  All: 'bg-white/15 text-white',
+  'Web Development': 'bg-blue-500/10 text-blue-200',
+  'UI/UX': 'bg-pink-500/10 text-pink-200',
+  AI: 'bg-violet-500/10 text-violet-200',
+  'Desktop Application': 'bg-emerald-500/10 text-emerald-200',
+};
 
 export default function Projects() {
   const audioRefs = useRef<{ [key: number]: HTMLAudioElement | null }>({});
   const [carouselImages, setCarouselImages] = useState<string[] | null>(null);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
   const [current, setCurrent] = useState(0);
+  const [activeTab, setActiveTab] = useState<Category>('All');
 
-
-  /*const handlePlayAudio = (index) => {
-    const audio = audioRefs.current[index];
-    if (audio) {
-      audio.play();
-    }
-  };*/
+  const filteredProjects =
+    activeTab === 'All'
+      ? projects
+      : projects.filter((p) => p.category === activeTab);
 
   useEffect(() => {
     if (!carouselImages) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
         setCurrent((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
@@ -82,41 +186,29 @@ export default function Projects() {
         setCarouselImages(null);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
-
-    // cleanup
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [carouselImages]);
 
-
   const handlePlayAudio = (index: number) => {
     const currentAudio = audioRefs.current[index];
-
-    // If already playing, pause it
     if (playingIndex === index && currentAudio) {
       currentAudio.pause();
       setPlayingIndex(null);
       return;
     }
-
-    // Pause all other audios
     Object.entries(audioRefs.current).forEach(([i, audio]) => {
       if (audio && Number(i) !== index) {
         audio.pause();
         audio.currentTime = 0;
       }
     });
-
-    // Play selected one
     if (currentAudio) {
       currentAudio.currentTime = 0;
       currentAudio.play();
       setPlayingIndex(index);
     }
   };
-
-
 
   return (
     <>
@@ -132,7 +224,8 @@ export default function Projects() {
           <motion.div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-600 opacity-30 rounded-full blur-3xl animate-pulse" />
           <motion.div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-400 opacity-20 rounded-full blur-2xl animate-spin-slow" />
 
-          <div className="text-center mb-16 pt-10">
+          {/* Header */}
+          <div className="text-center mb-10 pt-10">
             <h2 className="text-4xl md:text-3xl font-semibold mb-3 tracking-tight drop-shadow-md">
               Projects
             </h2>
@@ -141,98 +234,177 @@ export default function Projects() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 max-w-6xl mx-auto z-10 relative">
-            {projects.map((project, index) => (
-              <Tilt
-                key={index}
-                glareEnable={true}
-                glareMaxOpacity={0.15}
-                tiltMaxAngleX={10}
-                tiltMaxAngleY={10}
-                className={`relative group p-1 rounded-2xl ${project.bgEffect} bg-cover bg-center shadow-xl`}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="relative backdrop-blur-xl bg-white/10 rounded-2xl overflow-hidden"
-                >
-                  <div className="p-5">
-                    <div className="flex items-center gap-3 mb-2">
-                      {project.icon}
-                      <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                    </div>
-                    <div className="relative h-40 w-full mb-3 rounded-lg overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={700}
-                        height={300}
-                        className="object-cover"
+          {/* Category Tabs */}
+          <div className="flex justify-center mb-16 z-10 relative">
+            <div className="flex gap-2 p-1 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-lg">
+              {TABS.map((tab) => {
+                const isActive = activeTab === tab;
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`relative px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 ${isActive
+                      ? TAB_ACTIVE_BG[tab] + ' shadow-md'
+                      : 'text-white/50 hover:text-white/80 hover:bg-white/5'
+                      }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="tab-indicator"
+                        className={`absolute inset-0 rounded-xl bg-gradient-to-r ${TAB_COLORS[tab]} opacity-20`}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                       />
-                    </div>
-                    <p className="text-sm text-white/90 mb-2">{project.description}</p>
-                    <p className="text-xs text-white/60 italic">{project.impact}</p>
-                  </div>
-
-                  {/* Hover Glassy Overlay */}
-                  <div className="absolute inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      onClick={() => handlePlayAudio(index)}
-                      className="text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black mb-2"
-                    >
-                      {playingIndex === index ? '⏸ Pause' : '▶ Narration'}
-                    </button>
-                    <button
-                      onClick={() => {
-                        setCarouselImages(project.screenshots);
-                        setCurrent(0);
-                      }}
-
-                      className="text-white border border-white px-4 py-1 text-sm rounded hover:bg-white hover:text-black mb-2"
-                    >
-                      View Screenshots
-                    </button>
-                    <div className="flex gap-3">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm underline text-white/90 hover:text-white"
-                      >
-                        GitHub
-                      </a>
-                      <a
-                        href={project.liveDemo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm underline text-white/90 hover:text-white"
-                      >
-                        Live Demo
-                      </a>
-                    </div>
-
-                  </div>
-
-                  {/*<audio ref={(el) => (audioRefs.current[index] = el)} src={project.audio} preload="auto" />*/}
-                  <audio
-                    ref={(el) => {
-                      audioRefs.current[index] = el;
-                    }}
-                    src={project.audio}
-                    preload="auto"
-                  />
-
-                  {playingIndex === index && (
-                    <div className="p-4 bg-white/10 text-white text-sm italic rounded-b-2xl">
-                      {project.narrationText}
-                    </div>
-                  )}
-
-                </motion.div>
-              </Tilt>
-            ))}
+                    )}
+                    <span className="relative z-10 flex items-center gap-2">
+                      {tab === 'Web Development' && <span className="text-blue-300">{'</>'}</span>}
+                      {tab === 'UI/UX' && <span className="text-pink-300">✦</span>}
+                      {tab === 'AI' && <span className="text-violet-300">◈</span>}
+                      {tab === 'All' && <span className="text-white/70">⊞</span>}
+                      {tab === 'Desktop Application' && <span className="text-emerald-300">⬡</span>}
+                      {tab}
+                    </span>
+                    {isActive && (
+                      <span
+                        className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-gradient-to-r ${TAB_COLORS[tab]} opacity-80`}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
+          {/* Project count label */}
+          {/* <div className="text-center mb-8 z-10 relative">
+            <span className="text-white/40 text-sm tracking-widest uppercase">
+              {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''}
+              {activeTab !== 'All' ? ` in ${activeTab}` : ''}
+            </span>
+          </div> */}
+
+          {/* Projects Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 max-w-6xl mx-auto z-10 relative"
+            >
+              {filteredProjects.length === 0 ? (
+                <div className="col-span-3 text-center py-24 text-white/40 text-lg">
+                  No projects in this category yet.
+                </div>
+              ) : (
+                filteredProjects.map((project, index) => {
+                  // Find the global index for audio refs
+                  const globalIndex = projects.indexOf(project);
+                  return (
+                    <Tilt
+                      key={project.title}
+                      glareEnable={true}
+                      glareMaxOpacity={0.15}
+                      tiltMaxAngleX={10}
+                      tiltMaxAngleY={10}
+                      className={`relative group p-1 rounded-2xl ${project.bgEffect} bg-cover bg-center shadow-xl`}
+                    >
+                      {/* Category badge */}
+                      <div className="absolute -top-3 right-3 z-20">
+                        <span
+                          className={`text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10
+                            ${project.category === 'AI' ? 'bg-violet-500/30 text-violet-200' : ''}
+                            ${project.category === 'Web Development' ? 'bg-blue-500/30 text-blue-200' : ''}
+                            ${project.category === 'UI/UX' ? 'bg-pink-500/30 text-pink-200' : ''}
+                            ${project.category === 'Desktop Application' ? 'bg-emerald-500/30 text-emerald-200' : ''}
+                          `}
+                        >
+                          {project.category}
+                        </span>
+                      </div>
+
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: 'spring', stiffness: 200 }}
+                        className="relative backdrop-blur-xl bg-white/10 rounded-2xl overflow-hidden"
+                      >
+                        <div className="p-5">
+                          <div className="flex items-center gap-3 mb-2">
+                            {project.icon}
+                            <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                          </div>
+                          <div className="relative h-40 w-full mb-3 rounded-lg overflow-hidden">
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              width={700}
+                              height={300}
+                              className="object-cover"
+                            />
+                          </div>
+                          <p className="text-sm text-white/90 mb-2">{project.description}</p>
+                          <p className="text-xs text-white/60 italic">{project.impact}</p>
+                        </div>
+
+                        {/* Hover Glassy Overlay */}
+                        <div className="absolute inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <button
+                            onClick={() => handlePlayAudio(globalIndex)}
+                            className="text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black mb-2"
+                          >
+                            {playingIndex === globalIndex ? '⏸ Pause' : '▶ Narration'}
+                          </button>
+                          <button
+                            onClick={() => {
+                              setCarouselImages(project.screenshots);
+                              setCurrent(0);
+                            }}
+                            className="text-white border border-white px-4 py-1 text-sm rounded hover:bg-white hover:text-black mb-2"
+                          >
+                            View Screenshots
+                          </button>
+                          <div className="flex gap-3">
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm underline text-white/90 hover:text-white"
+                            >
+                              GitHub
+                            </a>
+                            <a
+                              href={project.liveDemo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm underline text-white/90 hover:text-white"
+                            >
+                              Live Demo
+                            </a>
+                          </div>
+                        </div>
+
+                        <audio
+                          ref={(el) => {
+                            audioRefs.current[globalIndex] = el;
+                          }}
+                          src={project.audio}
+                          preload="auto"
+                        />
+
+                        {playingIndex === globalIndex && (
+                          <div className="p-4 bg-white/10 text-white text-sm italic rounded-b-2xl">
+                            {project.narrationText}
+                          </div>
+                        )}
+                      </motion.div>
+                    </Tilt>
+                  );
+                })
+              )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Carousel Modal */}
           {carouselImages && (
             <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
               <div className="w-11/12 max-w-6xl rounded-lg overflow-hidden relative flex items-center">
@@ -245,11 +417,7 @@ export default function Projects() {
                   <ChevronLeft />
                 </button>
 
-                <Carousel
-                  images={carouselImages}
-                  current={current}
-                  setCurrent={setCurrent}
-                />
+                <Carousel images={carouselImages} current={current} setCurrent={setCurrent} />
 
                 <button
                   onClick={() => setCurrent((prev) => (prev + 1) % carouselImages.length)}
@@ -267,7 +435,6 @@ export default function Projects() {
               </button>
             </div>
           )}
-
 
           <Chatbot />
         </motion.div>
