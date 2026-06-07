@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools } from 'react-icons/fa';
+import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools, FaGlobe } from 'react-icons/fa';
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
 import dynamic from 'next/dynamic';
@@ -93,7 +93,7 @@ const projects = [
     category: 'Web Development' as Category,
     description: 'Personal finance dashboard — track spending, manage cards, and get budget-aware shopping picks.',
     icon: <FaWallet size={20} className="text-emerald-400" />,
-    image: '/projectImages/finora-preview.png',
+    image: '/projectImages/finora/finora-preview.png',
     bgEffect: 'bg-[url(/images/bg-charts.png)]',
     audio: '/audio/finora.mp3',
     impact: '✅ Multi-card management • 🚀 AI product recommendations • 📈 Auto-synced history',
@@ -144,6 +144,24 @@ const projects = [
     liveDemo: 'https://toolnest-new.vercel.app/',
     narrationText: `ToolNest is a clean, category-driven utility platform housing tools for generators, converters, image processing, and developer utilities — all running in-browser with no login needed. Built for speed and discoverability, every tool is one click away.`,
   },
+  {
+  title: 'LaunchXY',
+  category: 'UI/UX' as Category,
+  description: 'CRM website with multi-language support — clean, conversion-focused design for a SaaS product.',
+  icon: <FaGlobe size={20} className="text-sky-400" />,
+  image: '/projectImages/lxy/lxy-preview.png',
+  bgEffect: 'bg-[url(/images/bg-charts.png)]',
+  audio: '/audio/launchxy.mp3',
+  impact: '✅ Multi-language support • 🚀 CRM-focused UI • 📈 Conversion-optimized landing sections',
+  screenshots: [
+    '/projectImages/launchxy-1.png',
+    '/projectImages/launchxy-2.png',
+    '/projectImages/launchxy-3.png',
+  ],
+  github: 'https://github.com/Khushmeet13/launchxy',
+  liveDemo: 'https://lxy-website.vercel.app/',
+  narrationText: `LaunchXY is a polished marketing website for a CRM SaaS product. It features multi-language support for global reach, clean section-based layout with feature highlights, pricing, and testimonials — all designed to convert visitors into users.`,
+},
 ];
 
 // Tab accent colors
