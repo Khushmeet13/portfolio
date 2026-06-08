@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools, FaGlobe } from 'react-icons/fa';
+import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools, FaGlobe, FaCube } from 'react-icons/fa';
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
 import dynamic from 'next/dynamic';
@@ -145,23 +145,41 @@ const projects = [
     narrationText: `ToolNest is a clean, category-driven utility platform housing tools for generators, converters, image processing, and developer utilities — all running in-browser with no login needed. Built for speed and discoverability, every tool is one click away.`,
   },
   {
-  title: 'LaunchXY',
-  category: 'UI/UX' as Category,
-  description: 'CRM website with multi-language support — clean, conversion-focused design for a SaaS product.',
-  icon: <FaGlobe size={20} className="text-sky-400" />,
-  image: '/projectImages/lxy/lxy-preview.png',
-  bgEffect: 'bg-[url(/images/bg-charts.png)]',
-  audio: '/audio/launchxy.mp3',
-  impact: '✅ Multi-language support • 🚀 CRM-focused UI • 📈 Conversion-optimized landing sections',
-  screenshots: [
-    '/projectImages/launchxy-1.png',
-    '/projectImages/launchxy-2.png',
-    '/projectImages/launchxy-3.png',
-  ],
-  github: 'https://github.com/Khushmeet13/launchxy',
-  liveDemo: 'https://lxy-website.vercel.app/',
-  narrationText: `LaunchXY is a polished marketing website for a CRM SaaS product. It features multi-language support for global reach, clean section-based layout with feature highlights, pricing, and testimonials — all designed to convert visitors into users.`,
-},
+    title: 'LaunchXY',
+    category: 'UI/UX' as Category,
+    description: 'CRM website with multi-language support — clean, conversion-focused design for a SaaS product.',
+    icon: <FaGlobe size={20} className="text-sky-400" />,
+    image: '/projectImages/lxy/lxy-preview.png',
+    bgEffect: 'bg-[url(/images/bg-charts.png)]',
+    audio: '/audio/launchxy.mp3',
+    impact: '✅ Multi-language support • 🚀 CRM-focused UI • 📈 Conversion-optimized landing sections',
+    screenshots: [
+      '/projectImages/launchxy-1.png',
+      '/projectImages/launchxy-2.png',
+      '/projectImages/launchxy-3.png',
+    ],
+    github: 'https://github.com/Khushmeet13/launchxy',
+    liveDemo: 'https://lxy-website.vercel.app/',
+    narrationText: `LaunchXY is a polished marketing website for a CRM SaaS product. It features multi-language support for global reach, clean section-based layout with feature highlights, pricing, and testimonials — all designed to convert visitors into users.`,
+  },
+  {
+    title: 'Cryptrix',
+    category: 'UI/UX' as Category,
+    description: 'Immersive 3D blockchain website — a visually rich Web3 landing page with futuristic UI and fluid animations.',
+    icon: <FaCube size={20} className="text-cyan-400" />,
+    image: '/projectImages/cryptrix/cryptrix-preview.png',
+    bgEffect: 'bg-[url(/images/bg-matrix.png)]',
+    audio: '/audio/cryptrix.mp3',
+    impact: '✅ Full 3D interactive UI • 🚀 Web3 aesthetic • 📈 Smooth GSAP & Three.js animations',
+    screenshots: [
+      '/projectImages/cryptrix-1.png',
+      '/projectImages/cryptrix-2.png',
+      '/projectImages/cryptrix-3.png',
+    ],
+    github: 'https://github.com/Khushmeet13/cryptrix',
+    liveDemo: 'https://cryptrix.vercel.app',
+    narrationText: `Cryptrix is a high-fidelity 3D blockchain landing page built purely for visual impact. It features immersive Three.js scenes, fluid GSAP animations, and a dark futuristic aesthetic that captures the energy of Web3 — no backend, just pure frontend craftsmanship.`,
+  },
 ];
 
 // Tab accent colors
