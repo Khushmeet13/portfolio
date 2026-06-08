@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools, FaGlobe, FaCube } from 'react-icons/fa';
+import { FaChartLine, FaSearch, FaTooth, FaTimes, FaBolt, FaWallet, FaTicketAlt, FaTools, FaGlobe, FaCube, FaBrain, FaBuilding, FaShieldAlt, FaMusic } from 'react-icons/fa';
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
 import dynamic from 'next/dynamic';
@@ -180,6 +180,78 @@ const projects = [
     liveDemo: 'https://cryptrix.vercel.app',
     narrationText: `Cryptrix is a high-fidelity 3D blockchain landing page built purely for visual impact. It features immersive Three.js scenes, fluid GSAP animations, and a dark futuristic aesthetic that captures the energy of Web3 — no backend, just pure frontend craftsmanship.`,
   },
+  {
+    title: 'Nexus AI',
+    category: 'UI/UX' as Category,
+    description: '3D interactive showcase built with Next.js & Three.js — three immersive 3D models with smooth scene transitions.',
+    icon: <FaBrain size={20} className="text-violet-400" />,
+    image: '/projectImages/nexus/nexus-preview.png',
+    bgEffect: 'bg-[url(/images/bg-matrix.png)]',
+    audio: '/audio/nexus-ai.mp3',
+    impact: '✅ 3 custom 3D models • 🚀 Next.js + Three.js • 📈 Smooth camera & scene transitions',
+    screenshots: [
+      '/projectImages/nexus-ai-1.png',
+      '/projectImages/nexus-ai-2.png',
+      '/projectImages/nexus-ai-3.png',
+    ],
+    github: 'https://github.com/Khushmeet13/nexus-ai-3d',
+    liveDemo: 'https://nexus-ai-3d.vercel.app/',
+    narrationText: `Nexus AI is a pure 3D creative showcase built with Next.js and Three.js. It features three custom 3D models rendered in-browser with fluid camera transitions and immersive lighting — a demonstration of what modern web can achieve visually without any native app.`,
+  },
+  {
+    title: 'ArchViz',
+    category: 'UI/UX' as Category,
+    description: '3D architectural visualization — interactive property tours through photorealistic house models in the browser.',
+    icon: <FaBuilding size={20} className="text-amber-400" />,
+    image: '/projectImages/archviz/archviz-preview.png',
+    bgEffect: 'bg-[url(/images/bg-charts.png)]',
+    audio: '/audio/archviz.mp3',
+    impact: '✅ Photorealistic 3D models • 🚀 Interactive property walkthroughs • 📈 Browser-native',
+    screenshots: [
+      '/projectImages/archviz-1.png',
+      '/projectImages/archviz-2.png',
+      '/projectImages/archviz-3.png',
+    ],
+    github: 'https://github.com/Khushmeet13/archviz',
+    liveDemo: 'https://archviz-3d.vercel.app/',
+    narrationText: `ArchViz brings architectural models to life in the browser. Explore photorealistic 3D house models with interactive walkthroughs — navigate rooms, inspect layouts, and experience property designs as if you're physically there, all powered by Three.js with zero plugins required.`,
+  },
+  {
+  title: 'Auth System',
+  category: 'Web Development' as Category,
+  description: 'Full-stack auth implementation — login, signup, OAuth, roles & permissions with secure session management.',
+  icon: <FaShieldAlt size={20} className="text-green-400" />,
+  image: '/projectImages/auth/auth-preview.png',
+  bgEffect: 'bg-[url(/images/bg-charts.png)]',
+  audio: '/audio/auth.mp3',
+  impact: '✅ OAuth + JWT + Sessions • 🚀 Role-based access control • 📈 Production-ready security patterns',
+  screenshots: [
+    '/projectImages/auth-1.png',
+    '/projectImages/auth-2.png',
+    '/projectImages/auth-3.png',
+  ],
+  github: 'https://github.com/Khushmeet13/auth-system',
+  liveDemo: 'https://auth-new-system.vercel.app/',
+  narrationText: `A complete full-stack authentication system covering login, signup, OAuth providers, JWT tokens, session management, role-based access control, and protected routes — built as a production-ready reference implementation for secure user auth.`,
+},
+{
+  title: 'Music Universe',
+  category: 'UI/UX' as Category,
+  description: 'Immersive 3D music visualization — songs are stars, genres are galaxies, playlists are constellations in a navigable universe.',
+  icon: <FaMusic size={20} className="text-pink-400" />,
+  image: '/projectImages/music-universe-preview.png',
+  bgEffect: 'bg-[url(/images/bg-matrix.png)]',
+  audio: '/audio/music-universe.mp3',
+  impact: '✅ Beat-reactive 3D stars • 🚀 Web Audio API + Three.js • 📈 Bloom, Vignette & Chromatic Aberration FX',
+  screenshots: [
+    '/projectImages/music-universe-1.png',
+    '/projectImages/music-universe-2.png',
+    '/projectImages/music-universe-3.png',
+  ],
+  github: 'https://github.com/Khushmeet13/music-universe',
+  liveDemo: 'https://music-universe.vercel.app',
+  narrationText: `Music Universe transforms your entire music library into a navigable 3D cosmos. Every song is a glowing star pulsing to its BPM, genres form spiral particle galaxies, and playlists connect as constellations in deep space. Built with React Three Fiber, Web Audio API for real-time beat detection, and post-processing effects including Bloom and Chromatic Aberration — it's the most visual way to experience music.`,
+},
 ];
 
 // Tab accent colors
